@@ -1,5 +1,36 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AttendannceLeave.Views.History">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewmodel="clr-namespace:AttendannceLeave.ViewModels"
+             x:Class="AttendannceLeave.Views.History">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <viewmodel:HistoryViewModel x:Key="HistoryViewModel"/>
+            </ResourceDictionary>
+        
+        </ContentPage.Resources>
     <ContentPage.Content>
+         <StackLayout>
+           <ListView  x:Name="listView" ItemsSource="{Binding Source={StaticResource HistoryViewModel},Path=LeaveList }"  CachingStrategy="RecycleElement" HasUnevenRows="True" SeparatorVisibility="None" >
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BackgroundColor="#eee"
+                        Orientation="Vertical">
+                            <Label Text="{Binding Type}">
+                                    </Label>
+                             <Label Text="{Binding Status}">
+                                    </Label>
+                                 <Label Text="{Binding FromDate , StringFormat='{0:dd MMM yyyy}'}">
+                                    </Label>
+                             <Label Text="{Binding ToDate , StringFormat='{0:dd MMM yyyy}'}">
+                                    </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+       
     </ContentPage.Content>
 </ContentPage>
